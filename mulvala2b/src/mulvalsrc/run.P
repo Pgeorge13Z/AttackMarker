@@ -1,0 +1,19 @@
+:-['/home/xiongjiezhu/文档/mulval/xsb/mulval//lib/libmulval'].
+:-['/home/xiongjiezhu/文档/mulval/xsb/mulval//src/analyzer/translate'].
+:-['/home/xiongjiezhu/文档/mulval/xsb/mulval//src/analyzer/attack_trace'].
+:-['/home/xiongjiezhu/文档/mulval/xsb/mulval//src/analyzer/auxiliary'].
+
+:-dynamic meta/1.
+
+:-load_dyn('running_rules.P').
+
+:-load_dyn('input.P').
+
+:-assert(traceMode(completeTrace2)).
+
+:-load_dyn('/home/xiongjiezhu/文档/mulval/xsb/mulval//src/analyzer/advances_notrim.P').
+
+:-assert(cvss(_, none)).
+
+:-mulval_run.
+

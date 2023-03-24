@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title_content %}{% endblock %}</title>
+    <link href="{% static 'libs/bootstrap/bootstrap.css' %}" rel="stylesheet">
+</head>
+<body>
+    {% block body_content %}{% endblock %}
+</body>
+</html>

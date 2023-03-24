@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<style>
+    html{text-align:center}
+</style>
+<embed lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AttackMarker</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <!-- Bootstrap CSS-->
+{#    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">#}
+     <link rel="stylesheet" href= {% static '/vendor/bootstrap/css/bootstrap.min.css' %}>
+        <!-- Font Awesome CSS-->
+{#    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">#}
+     <link rel="stylesheet" href= {% static '/vendor/font-awesome/css/font-awesome.min.css' %}>
+{#    <!-- Custom Font Icons CSS-->#}
+{#    <link rel="stylesheet" href="css/landy-iconfont.css">#}
+      <link rel="stylesheet" href= {% static '/css/landy-iconfont.css' %}>
+{#    <!-- Google fonts - Open Sans-->#}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800">
+{#    <!-- owl carousel-->#}
+{#    <link rel="stylesheet" href="vendor/owl.carousel/assets/owl.carousel.css">#}
+      <link rel="stylesheet" href= {% static '/vendor/owl.carousel/assets/owl.carousel.css' %}>
+{#    <link rel="stylesheet" href="vendor/owl.carousel/assets/owl.theme.default.css">#}
+      <link rel="stylesheet" href= {% static '/vendor/owl.carousel/assets/owl.theme.default.css' %}>
+{#    <!-- theme stylesheet-->#}
+{#    <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">#}
+      <link rel="stylesheet" href= {% static '/css/style.default.css' %} id="theme-stylesheet">
+{#    <!-- Custom stylesheet - for your changes-->#}
+{#    <link rel="stylesheet" href="css/custom.css">#}
+      <link rel="stylesheet" href= {% static '/css/custom.css' %}>
+{#    <!-- Favicon-->#}
+{#    <link rel="shortcut icon" href="favicon.png">#}
+
+
+
+</head>
+{#<body style="background-image: url({% static '/imgs/S-ICS.png' %});background-size: auto 1000px;background-position: 0px 0px;background-repeat:no-repeat;background-attachment:fixed;">#}
+<body>
+
+    <section id="hero" class="hero hero-home bg-gray">
+      <div class="container">
+        <div class="row d-flex">
+
+          <div class="col-lg-6 text order-2 order-lg-1">
+            <h1>   AttackMarker &mdash; APT Prediction and Proactive Defence Framework</h1>
+            <p class="hero-text">AttackMarker uses attack graph technology and dynamic Bayesian inference algorithms to predict all possible paths an attacker could take and visualise the high-risk paths under the target grouping.</p>
+{#            <div class="CTA">#}
+{#                <a href="#features" class="btn btn-primary btn-shadow btn-gradient link-scroll">Discover More</a>#}
+{#                <a href="#" class="btn btn-outline-primary">Sign Up Now</a></div>#}
+{#          </div>#}
+            <div class="CTA">
+            <form action="/mulval/mulval/" method="post" enctype="multipart/form-data">
+{#            <input type="file" name="upload file " class="btn btn-primary btn-shadow btn-gradient link-scroll" />#}
+
+        <input class="form-control" type="file" id="formFile" name="upload">
+{#        <input type="submit" value="MulVAL" class="btn btn-outline-primary" />#}
+    <p>
+                </p>
+    <input type="submit" value="Generate attack paths" class="btn btn-primary btn-gradient submit"/>
+
+            </form></div>
+
+              <p>
+
+              </p>
+               </div>
+
+{#               <div class="col-lg-6 order-1 order-lg-2">#}
+{#                   <div style="text-align:center;">#}
+{#                   <img src={% static '/img/BAGGEN.png' %} alt="..."  class="img-fluid" width="400%">#}
+{#                   </div>#}
+{##}
+{#            </div>#}
+<div class="col-lg-6 order-1 order-lg-2 d-flex justify-content-center align-items-center">
+  <img src="{% static '/img/BAGGEN.png' %}" alt="..." class="img-fluid" style="max-width:100%; max-height:100%; width:100%;">
+</div>
+
+{#          <div class="col-lg-6 order-1 order-lg-2"><img src="img/Macbook.png" alt="..." class="img-fluid"></div>#}
+{#            <div class="col-lg-6 order-1 order-lg-2"><img src={% static '/img/Macbook.png' %} alt="..." class="img-fluid"></div>#}
+
+      </div>
+           </div>
+    </section>
+
+
+     <section id="High-risk attack path demonstration" class="testimonials">
+      <div class="container text-center">
+        <h2>High-risk attack path demonstration</h2>
+        <p class="lead">Here you can see a graph of the attacks under the network rules you have entered,
+            you can select your attack targets and the AttackMarker will show the possible high risk paths
+            ,and they are marked with their probability and risk level</p>
+
+           {% if retcode == 1 %}
+        <form action="/mulval/download/" method="post">
+            <input type="submit" value="Download the AG" class="btn btn-primary btn-gradient submit">
+        </form>
+        <br>
+        <small style="color: red">{{ a2berror }}</small>
+        <form action="/mulval/a2b/" method="post">
+            <select name="Attack Goal" class="form-select" aria-label="Select your attack target">
+                {% for aim in aimlist %}
+                    <option>{{ aim }}</option>
+                {% endfor %}
+                <option value="_">ALL</option>
+            </select>
+        <p>
+
+        </p>
+
+            <input type="submit" value="Generate a BAG!" class="btn btn-primary btn-gradient submit"/>
+        </form>
+    {% endif %}
+    <h2 style="color: black">Attack Graph Example</h2>
+<!--    <embed src="/static/imgs/AttackGraph.pdf" width="1000" type="application/pdf" height="500" wmode='transparent'/>-->
+    <embed src="{% static '/imgs/AttackGraph.pdf' %}" type="application/pdf" width="1000" height="500"/>
+
+
+    <h2 style="color: black">Bayesian Attack Graph Example</h2>
+    <embed src="/static/imgs/result.dot.pdf" width="1000" type="application/pdf" height="500" wmode='transparent'/>
+
+
+      </div>
+    </section>
+
+
+
+    <!--<img src="/static/imgs/IMG_2175.jpeg"/>-->
+    <script src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+</html>
